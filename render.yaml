@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: generateur-pdf-paie
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn generator:app

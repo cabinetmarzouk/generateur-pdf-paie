@@ -1,0 +1,5 @@
+flask
+pillow
+reportlab
+requests
+gunicorn
