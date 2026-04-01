@@ -58,12 +58,10 @@ def normalize_page_data(page_name: str, page_data: dict) -> dict:
         data["commune_cp"] = cp
         data["commune_ville"] = ville
 
-        # plus besoin des champs séparés jour/mois/année
         data.pop("jour_naissance", None)
         data.pop("mois_naissance", None)
         data.pop("annee_naissance", None)
 
-    # champs inutiles supprimés selon tes consignes
     if page_name == "etat_civil_2":
         data.pop("regime_secu_total", None)
         data.pop("prudhomme_section_commerce", None)
@@ -95,25 +93,20 @@ def normalize_page_data(page_name: str, page_data: dict) -> dict:
 MAPS = {
     "etat_civil_1": {
         "fields": [
-            # légèrement plus haut
             {"key": "civilite", "type": "text", "x": 142, "y": 54, "size": 16},
             {"key": "nom", "type": "text", "x": 245, "y": 54, "size": 16},
             {"key": "prenoms", "type": "text", "x": 140, "y": 78, "size": 16},
 
-            # adresse découpée
-            {"key": "numero_voie", "type": "text", "x": 97, "y": 131, "size": 16},
+            {"key": "numero_voie", "type": "text", "x": 92, "y": 131, "size": 16},
             {"key": "voie", "type": "text", "x": 315, "y": 131, "size": 16},
 
-            # distributeur / commune dédoublés
-            {"key": "distributeur_cp", "type": "text", "x": 102, "y": 180, "size": 16},
-            {"key": "distributeur_ville", "type": "text", "x": 214, "y": 180, "size": 16},
-            {"key": "commune_cp", "type": "text", "x": 102, "y": 230, "size": 16},
-            {"key": "commune_ville", "type": "text", "x": 214, "y": 230, "size": 16},
+            {"key": "distributeur_cp", "type": "text", "x": 70, "y": 180, "size": 16},
+            {"key": "distributeur_ville", "type": "text", "x": 150, "y": 180, "size": 16},
+            {"key": "commune_cp", "type": "text", "x": 70, "y": 230, "size": 16},
+            {"key": "commune_ville", "type": "text", "x": 150, "y": 230, "size": 16},
 
             {"key": "date_naissance", "type": "text", "x": 158, "y": 306, "size": 16},
             {"key": "secu", "type": "text", "x": 158, "y": 331, "size": 16},
-
-            # légèrement plus haut
             {"key": "commune_naissance", "type": "text", "x": 288, "y": 351, "size": 16},
 
             {"key": "sexe_homme", "type": "cross", "x": 83, "y": 505, "size": 15},
@@ -137,18 +130,16 @@ MAPS = {
 
     "emploi_2": {
         "fields": [
-            # plus bas
-            {"key": "temps_complet", "type": "cross", "x": 197, "y": 90, "size": 15},
-            {"key": "temps_partiel", "type": "cross", "x": 325, "y": 90, "size": 15},
+            {"key": "temps_complet", "type": "cross", "x": 197, "y": 98, "size": 15},
+            {"key": "temps_partiel", "type": "cross", "x": 325, "y": 98, "size": 15},
             {"key": "date_anciennete", "type": "text", "x": 271, "y": 228, "size": 16}
         ]
     },
 
     "emploi_3": {
         "fields": [
-            # plus à droite
-            {"key": "contrat_cdi", "type": "cross", "x": 124, "y": 63, "size": 15},
-            {"key": "contrat_cdd", "type": "cross", "x": 124, "y": 89, "size": 15},
+            {"key": "contrat_cdi", "type": "cross", "x": 135, "y": 63, "size": 15},
+            {"key": "contrat_cdd", "type": "cross", "x": 135, "y": 89, "size": 15},
             {"key": "categorie_normal", "type": "cross", "x": 787, "y": 239, "size": 15}
         ]
     },
@@ -163,31 +154,26 @@ MAPS = {
 
     "entree_sortie": {
         "fields": [
-            # légèrement plus haut
-            {"key": "date_entree", "type": "text", "x": 34, "y": 79, "size": 16},
-            {"key": "date_sortie", "type": "text", "x": 494, "y": 79, "size": 16},
-            {"key": "motif_sortie", "type": "text", "x": 828, "y": 79, "size": 16}
+            {"key": "date_entree", "type": "text", "x": 34, "y": 74, "size": 16},
+            {"key": "date_sortie", "type": "text", "x": 494, "y": 74, "size": 16},
+            {"key": "motif_sortie", "type": "text", "x": 828, "y": 74, "size": 16}
         ]
     },
 
     "prevoyance": {
         "fields": [
-            # légèrement plus haut
-            {"key": "date_premiere_entree", "type": "text", "x": 503, "y": 86, "size": 16}
+            {"key": "date_premiere_entree", "type": "text", "x": 503, "y": 81, "size": 16}
         ]
     },
 
     "salaire": {
         "fields": [
             {"key": "periodicite_mois", "type": "cross", "x": 672, "y": 112, "size": 15},
-
-            # légèrement plus haut
-            {"key": "salaire_mensuel", "type": "text", "x": 233, "y": 231, "size": 16},
-            {"key": "heures_par_periode", "type": "text", "x": 419, "y": 231, "size": 16},
-
-            # plus à droite
-            {"key": "total_salaire", "type": "text", "x": 164, "y": 286, "size": 16},
-            {"key": "application_smic", "type": "cross", "x": 28, "y": 337, "size": 15}
+            {"key": "salaire_mensuel", "type": "text", "x": 233, "y": 226, "size": 16},
+            {"key": "heures_par_periode", "type": "text", "x": 419, "y": 226, "size": 16},
+            {"key": "heures_a_majorer", "type": "text", "x": 419, "y": 260, "size": 16},
+            {"key": "total_salaire", "type": "text", "x": 168, "y": 286, "size": 16},
+            {"key": "application_smic", "type": "cross", "x": 33, "y": 337, "size": 15}
         ]
     },
 
