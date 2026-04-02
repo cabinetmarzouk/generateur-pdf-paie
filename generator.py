@@ -29,16 +29,14 @@ MAPS = {
             {"key":"nom", "type":"text", "x":245, "y":54, "size":16},
             {"key":"prenoms", "type":"text", "x":140, "y":78, "size":16},
 
-            {"key":"numero_voie", "type":"text", "x":138, "y":129, "size":16},
+            {"key":"numero_voie", "type":"text", "x":148, "y":129, "size":16},
             {"key":"voie", "type":"text", "x":316, "y":129, "size":16},
 
-            {"key":"complement_adresse", "type":"text", "x":138, "y":155, "size":16},
+            {"key":"distributeur_code_postal", "type":"text", "x":146, "y":172, "size":16},
+            {"key":"distributeur_ville", "type":"text", "x":216, "y":172, "size":16},
 
-            {"key":"distributeur_code_postal", "type":"text", "x":136, "y":174, "size":16},
-            {"key":"distributeur_ville", "type":"text", "x":214, "y":171, "size":16},
-
-            {"key":"commune_code_postal", "type":"text", "x":136, "y":200, "size":16},
-            {"key":"commune_ville", "type":"text", "x":214, "y":197, "size":16},
+            {"key":"commune_code_postal", "type":"text", "x":146, "y":198, "size":16},
+            {"key":"commune_ville", "type":"text", "x":216, "y":198, "size":16},
 
             {"key":"date_naissance", "type":"text", "x":158, "y":306, "size":16},
             {"key":"secu", "type":"text", "x":158, "y":331, "size":16},
@@ -59,24 +57,24 @@ MAPS = {
     "emploi_1": {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
-            {"key":"code_insee_emploi", "type":"text", "x":243, "y":208, "size":16},
+            {"key":"code_insee_emploi", "type":"text", "x":242, "y":208, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
     },
 
     "emploi_2": {
         "fields": [
-            {"key":"temps_complet", "type":"cross", "x":197, "y":88, "size":15},
-            {"key":"temps_partiel", "type":"cross", "x":325, "y":88, "size":15},
+            {"key":"temps_complet", "type":"cross", "x":195, "y":111, "size":15},
+            {"key":"temps_partiel", "type":"cross", "x":326, "y":111, "size":15},
             {"key":"date_anciennete", "type":"text", "x":271, "y":228, "size":16}
         ]
     },
 
     "emploi_3": {
         "fields": [
-            {"key":"contrat_cdi", "type":"cross", "x":122, "y":63, "size":15},
-            {"key":"contrat_cdd", "type":"cross", "x":122, "y":89, "size":15},
-            {"key":"categorie_normal", "type":"cross", "x":787, "y":239, "size":15}
+            {"key":"contrat_cdi", "type":"cross", "x":142, "y":64, "size":15},
+            {"key":"contrat_cdd", "type":"cross", "x":142, "y":89, "size":15},
+            {"key":"categorie_normal", "type":"cross", "x":757, "y":239, "size":15}
         ]
     },
 
@@ -90,33 +88,33 @@ MAPS = {
 
     "entree_sortie": {
         "fields": [
-            {"key":"date_entree", "type":"text", "x":34, "y":82, "size":16},
-            {"key":"date_sortie", "type":"text", "x":494, "y":82, "size":16},
-            {"key":"motif_sortie", "type":"text", "x":828, "y":82, "size":16}
+            {"key":"date_entree", "type":"text", "x":34, "y":78, "size":16},
+            {"key":"date_sortie", "type":"text", "x":494, "y":78, "size":16},
+            {"key":"motif_sortie", "type":"text", "x":828, "y":78, "size":16}
         ]
     },
 
     "prevoyance": {
         "fields": [
-            {"key":"date_premiere_entree", "type":"text", "x":503, "y":86, "size":16}
+            {"key":"date_premiere_entree", "type":"text", "x":503, "y":83, "size":16}
         ]
     },
 
     "salaire": {
         "fields": [
             {"key":"periodicite_mois", "type":"cross", "x":672, "y":112, "size":15},
-            {"key":"salaire_mensuel", "type":"text", "x":233, "y":230, "size":16},
-            {"key":"heures_par_periode", "type":"text", "x":419, "y":230, "size":16},
-            {"key":"heures_a_majorer", "type":"text", "x":722, "y":262, "size":16},
+            {"key":"salaire_mensuel", "type":"text", "x":233, "y":223, "size":16},
+            {"key":"heures_par_periode", "type":"text", "x":419, "y":223, "size":16},
+            {"key":"heures_a_majorer", "type":"text", "x":409, "y":258, "size":16},
             {"key":"total_salaire", "type":"text", "x":165, "y":286, "size":16},
-            {"key":"application_smic", "type":"cross", "x":31, "y":337, "size":15}
+            {"key":"application_smic", "type":"cross", "x":37, "y":337, "size":15}
         ]
     },
 
     "alertes": {
         "fields": [
-            {"key":"date_alerte", "type":"text", "x":25, "y":70, "size":16},
-            {"key":"texte_alerte", "type":"text", "x":120, "y":70, "size":16}
+            {"key":"date_alerte", "type":"text", "x":31, "y":52, "size":16},
+            {"key":"texte_alerte", "type":"text", "x":116, "y":52, "size":16}
         ]
     }
 }
