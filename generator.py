@@ -115,8 +115,8 @@ MAPS = {
 
     "alertes": {
         "fields": [
-            {"key":"date_alerte", "type":"text", "x":31, "y":30, "size":16},
-            {"key":"texte_alerte", "type":"text", "x":116, "y":30, "size":16}
+            {"key":"date_alerte", "type":"text", "x":25, "y":70, "size":16},
+            {"key":"texte_alerte", "type":"text", "x":120, "y":70, "size":16}
         ]
     }
 }
