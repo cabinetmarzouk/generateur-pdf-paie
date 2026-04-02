@@ -57,7 +57,7 @@ MAPS = {
     "emploi_1": {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
-            {"key":"code_insee_emploi", "type":"text", "x":242, "y":208, "size":16},
+            {"key":"code_insee_emploi", "type":"text", "x":242, "y":211, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
     },
@@ -113,8 +113,8 @@ MAPS = {
 
     "alertes": {
         "fields": [
-            {"key":"date_alerte", "type":"text", "x":31, "y":52, "size":16},
-            {"key":"texte_alerte", "type":"text", "x":116, "y":52, "size":16}
+            {"key":"date_alerte", "type":"text", "x":31, "y":78, "size":16},
+            {"key":"texte_alerte", "type":"text", "x":116, "y":78, "size":16}
         ]
     }
 }
