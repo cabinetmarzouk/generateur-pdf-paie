@@ -5,7 +5,6 @@ from reportlab.lib.utils import ImageReader
 import requests
 import io
 import os
-import textwrap
 
 app = Flask(__name__)
 
@@ -59,7 +58,7 @@ MAPS = {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
             {"key":"code_insee_emploi", "type":"text", "x":242, "y":205, "size":16},
-            {"key":"indice_emploi", "type":"text", "x":242, "y":258, "size":16},
+            {"key":"indice_emploi", "type":"text", "x":185, "y":314, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
     },
@@ -76,21 +75,48 @@ MAPS = {
         "fields": [
             {"key":"contrat_cdi", "type":"cross", "x":142, "y":64, "size":15},
             {"key":"contrat_cdd", "type":"cross", "x":142, "y":89, "size":15},
-            {"key":"cdd_motif", "type":"text", "x":332, "y":76, "size":16},
+            {"key":"cdd_motif", "type":"text", "x":327, "y":77, "size":15},
             {"key":"categorie_normal", "type":"cross", "x":757, "y":239, "size":15},
-            {"key":"ref_contrat_note", "type":"multiline_text", "x":145, "y":470, "size":14, "max_width":260, "line_spacing":4}
+            {
+                "key":"ref_contrat_note",
+                "type":"boxed_text",
+                "x":300,
+                "y":468,
+                "w":270,
+                "h":42,
+                "size":12,
+                "text":"Si salarié déjà embauché dans le passé voir EDDY"
+            }
         ]
     },
 
     "conges": {
         "fields": [
-            {"key":"note_conges", "type":"multiline_text", "x":162, "y":62, "size":13, "max_width":220, "line_spacing":3}
+            {
+                "key":"note_conges",
+                "type":"boxed_text",
+                "x":160,
+                "y":62,
+                "w":250,
+                "h":36,
+                "size":12,
+                "text":"non si gérant ou président"
+            }
         ]
     },
 
     "allegement": {
         "fields": [
-            {"key":"note_allegement", "type":"multiline_text", "x":168, "y":206, "size":13, "max_width":240, "line_spacing":3}
+            {
+                "key":"note_allegement",
+                "type":"boxed_text",
+                "x":172,
+                "y":246,
+                "w":250,
+                "h":36,
+                "size":12,
+                "text":"non si gérant ou président"
+            }
         ]
     },
 
@@ -115,7 +141,17 @@ MAPS = {
             {"key":"heures_par_periode", "type":"text", "x":419, "y":223, "size":16},
             {"key":"heures_a_majorer", "type":"text", "x":409, "y":258, "size":16},
             {"key":"total_salaire", "type":"text", "x":165, "y":286, "size":16},
-            {"key":"application_smic", "type":"cross", "x":37, "y":337, "size":15}
+            {"key":"application_smic", "type":"cross", "x":37, "y":337, "size":15},
+            {
+                "key":"note_forfaitaire",
+                "type":"boxed_text",
+                "x":615,
+                "y":338,
+                "w":250,
+                "h":38,
+                "size":12,
+                "text":"mettre forfaitaire si gérants ou présidents"
+            }
         ]
     },
 
@@ -151,92 +187,17 @@ def draw_text(draw, text, x, y, size):
     draw.text((x, y), str(text), fill=(0, 0, 0), font=get_font(size))
 
 
-def draw_multiline_text(draw, text, x, y, size, max_width=250, line_spacing=4):
-    if text is None or text == "":
-        return
-
-    font = get_font(size)
-    words = str(text).split()
-    if not words:
-        return
-
-    lines = []
-    current = words[0]
-
-    for word in words[1:]:
-        test_line = current + " " + word
-        bbox = draw.textbbox((0, 0), test_line, font=font)
-        width = bbox[2] - bbox[0]
-        if width <= max_width:
-            current = test_line
-        else:
-            lines.append(current)
-            current = word
-
-    lines.append(current)
-
-    current_y = y
-    for line in lines:
-        draw.text((x, current_y), line, fill=(0, 0, 0), font=font)
-        current_y += size + line_spacing
-
-
 def draw_cross(draw, x, y, size):
     half = max(4, size // 2)
     draw.line((x - half, y - half, x + half, y + half), fill=(0, 0, 0), width=2)
     draw.line((x + half, y - half, x - half, y + half), fill=(0, 0, 0), width=2)
 
 
-def render_page(page_name: str, template_id: str, page_data: dict) -> Image.Image:
-    img = download_image(template_id)
-    draw = ImageDraw.Draw(img)
-    fields = MAPS.get(page_name, {}).get("fields", [])
-
-    for field in fields:
-        key = field["key"]
-        ftype = field["type"]
-        x = field["x"]
-        y = field["y"]
-        size = field.get("size", 16)
-        value = page_data.get(key)
-
-        if ftype == "text":
-            draw_text(draw, value, x, y, size)
-        elif ftype == "multiline_text":
-            draw_multiline_text(
-                draw,
-                value,
-                x,
-                y,
-                size,
-                field.get("max_width", 250),
-                field.get("line_spacing", 4)
-            )
-        elif ftype == "cross" and bool(value):
-            draw_cross(draw, x, y, size)
-
-    return img
-
-
-def build_pdf(images):
-    buffer = io.BytesIO()
-    c = canvas.Canvas(buffer)
-
-    for img in images:
-        w, h = img.size
-        c.setPageSize((w, h))
-
-        tmp = io.BytesIO()
-        img.save(tmp, format="PNG")
-        tmp.seek(0)
-
-        reader = ImageReader(tmp)
-        c.drawImage(reader, 0, 0, width=w, height=h)
-        c.showPage()
-
-    c.save()
-    buffer.seek(0)
-    return buffer
+def draw_boxed_text(draw, text, x, y, w, h, size):
+    if text is None or text == "":
+        return
+    draw.rectangle([x, y, x + w, y + h], fill="white", outline="black", width=1)
+    draw.text((x + 6, y + 8), str(text), fill=(0, 0, 0), font=get_font(size))
 
 
 def normalize_text(value):
@@ -284,7 +245,7 @@ def detect_categorie(page_data):
     categorie = normalize_lower(page_data.get("categorie_salarie") or page_data.get("categorie") or "")
     emploi = normalize_lower(page_data.get("emploi_exerce") or page_data.get("emploi") or "")
 
-    if "cadre" in categorie or "cadre" in emploi or "gérant" in emploi or "gerant" in emploi:
+    if "cadre" in categorie or "cadre" in emploi or "gérant" in emploi or "gerant" in emploi or "président" in emploi or "president" in emploi:
         return "cadre"
     if "etam" in categorie or "etam" in emploi:
         return "etam"
@@ -369,21 +330,14 @@ def enrich_page_data(page_name, page_data):
 
     elif page_name == "emploi_3":
         contrat = normalize_upper(data.get("contrat"))
-        if contrat == "CDD":
-            data["cdd_motif"] = "31"
-        else:
-            data["cdd_motif"] = ""
-
-        if not normalize_text(data.get("ref_contrat_note")):
-            data["ref_contrat_note"] = "Si SALARIE DEJA EMBAUCHE DANS LE PASSE VOIR EDDY3"
+        data["cdd_motif"] = "31" if contrat == "CDD" else ""
+        data["ref_contrat_note"] = "Si salarié déjà embauché dans le passé voir EDDY"
 
     elif page_name == "conges":
-        if not normalize_text(data.get("note_conges")):
-            data["note_conges"] = "non si gérant ou président"
+        data["note_conges"] = "non si gérant ou président"
 
     elif page_name == "allegement":
-        if not normalize_text(data.get("note_allegement")):
-            data["note_allegement"] = "non si gérant ou président"
+        data["note_allegement"] = "non si gérant ou président"
 
     elif page_name == "entree_sortie":
         contrat = normalize_upper(data.get("contrat"))
@@ -405,7 +359,60 @@ def enrich_page_data(page_name, page_data):
             if not normalize_text(data.get("heures_a_majorer")):
                 data["heures_a_majorer"] = ""
 
+        data["note_forfaitaire"] = "mettre forfaitaire si gérants ou présidents"
+
     return data
+
+
+def render_page(page_name: str, template_id: str, page_data: dict) -> Image.Image:
+    img = download_image(template_id)
+    draw = ImageDraw.Draw(img)
+    fields = MAPS.get(page_name, {}).get("fields", [])
+
+    for field in fields:
+        key = field["key"]
+        ftype = field["type"]
+        value = page_data.get(key)
+
+        if ftype == "text":
+            draw_text(draw, value, field["x"], field["y"], field.get("size", 16))
+
+        elif ftype == "cross" and bool(value):
+            draw_cross(draw, field["x"], field["y"], field.get("size", 15))
+
+        elif ftype == "boxed_text":
+            draw_boxed_text(
+                draw,
+                value or field.get("text", ""),
+                field["x"],
+                field["y"],
+                field["w"],
+                field["h"],
+                field.get("size", 12)
+            )
+
+    return img
+
+
+def build_pdf(images):
+    buffer = io.BytesIO()
+    c = canvas.Canvas(buffer)
+
+    for img in images:
+        w, h = img.size
+        c.setPageSize((w, h))
+
+        tmp = io.BytesIO()
+        img.save(tmp, format="PNG")
+        tmp.seek(0)
+
+        reader = ImageReader(tmp)
+        c.drawImage(reader, 0, 0, width=w, height=h)
+        c.showPage()
+
+    c.save()
+    buffer.seek(0)
+    return buffer
 
 
 @app.route("/health", methods=["GET"])
