@@ -80,12 +80,12 @@ MAPS = {
             {
                 "key":"ref_contrat_note",
                 "type":"boxed_text",
-                "x":300,
-                "y":468,
+                "x":280,
+                "y":500,
                 "w":270,
                 "h":42,
                 "size":12,
-                "text":"Si salarié déjà embauché dans le passé voir EDDY"
+                "text":"Si déjà embauché dans le passé voir EDDY"
             }
         ]
     },
@@ -96,11 +96,11 @@ MAPS = {
                 "key":"note_conges",
                 "type":"boxed_text",
                 "x":160,
-                "y":62,
+                "y":45,
                 "w":250,
                 "h":36,
                 "size":12,
-                "text":"non si gérant ou président"
+                "text":"non si gérant ou président sinon toujour oui "
             }
         ]
     },
@@ -111,11 +111,11 @@ MAPS = {
                 "key":"note_allegement",
                 "type":"boxed_text",
                 "x":172,
-                "y":246,
+                "y":350,
                 "w":250,
                 "h":36,
                 "size":12,
-                "text":"non si gérant ou président"
+                "text":"non si gérant ou président sinon toujour oui "
             }
         ]
     },
@@ -145,12 +145,12 @@ MAPS = {
             {
                 "key":"note_forfaitaire",
                 "type":"boxed_text",
-                "x":615,
-                "y":338,
+                "x":140,
+                "y":78,
                 "w":250,
                 "h":38,
-                "size":12,
-                "text":"mettre forfaitaire si gérants ou présidents"
+                "size":16,
+                "text":"mettre forfaitaire si gérants ou présidents sinon toujour mensuel"
             }
         ]
     },
