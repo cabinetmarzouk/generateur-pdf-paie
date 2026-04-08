@@ -58,7 +58,7 @@ MAPS = {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
             {"key":"code_insee_emploi", "type":"text", "x":242, "y":200, "size":16},
-            {"key":"indice_emploi", "type":"text", "x":140, "y":510, "size":16},
+            {"key":"indice_emploi", "type":"text", "x":140, "y":500, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
     },
@@ -75,7 +75,7 @@ MAPS = {
         "fields": [
             {"key":"contrat_cdi", "type":"cross", "x":142, "y":64, "size":15},
             {"key":"contrat_cdd", "type":"cross", "x":142, "y":89, "size":15},
-            {"key":"cdd_motif", "type":"text", "x":332, "y":77, "size":15},
+            {"key":"cdd_motif", "type":"text", "x":346, "y":87, "size":15},
             {"key":"categorie_normal", "type":"cross", "x":757, "y":239, "size":15},
             {
                 "key":"ref_contrat_note",
@@ -85,7 +85,7 @@ MAPS = {
                 "w":300,
                 "h":42,
                 "size":12,
-                "text":"Ref contrat : si déjà embauchévoir EDDY"
+                "text":"Ref contrat si déjà embauché voir EDDY"
             }
         ]
     },
@@ -137,17 +137,17 @@ MAPS = {
     "salaire": {
         "fields": [
             {"key":"periodicite_mois", "type":"cross", "x":672, "y":112, "size":15},
-            {"key":"salaire_mensuel", "type":"text", "x":233, "y":223, "size":16},
-            {"key":"heures_par_periode", "type":"text", "x":419, "y":223, "size":16},
+            {"key":"salaire_mensuel", "type":"text", "x":225, "y":230, "size":16},
+            {"key":"heures_par_periode", "type":"text", "x":410, "y":230, "size":16},
             {"key":"heures_a_majorer", "type":"text", "x":409, "y":258, "size":16},
-            {"key":"total_salaire", "type":"text", "x":165, "y":286, "size":16},
+            {"key":"total_salaire", "type":"text", "x":175, "y":280, "size":16},
             {"key":"application_smic", "type":"cross", "x":37, "y":337, "size":15},
             {
                 "key":"note_forfaitaire",
                 "type":"boxed_text",
                 "x":34,
-                "y":78,
-                "w":250,
+                "y":65,
+                "w":260,
                 "h":38,
                 "size":12,
                 "text":"mettre forfaitaire QUE si gérants ou présidents"
