@@ -57,8 +57,8 @@ MAPS = {
     "emploi_1": {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
-            {"key":"code_insee_emploi", "type":"text", "x":242, "y":205, "size":16},
-            {"key":"indice_emploi", "type":"text", "x":185, "y":314, "size":16},
+            {"key":"code_insee_emploi", "type":"text", "x":242, "y":200, "size":16},
+            {"key":"indice_emploi", "type":"text", "x":140, "y":510, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
     },
@@ -81,11 +81,11 @@ MAPS = {
                 "key":"ref_contrat_note",
                 "type":"boxed_text",
                 "x":300,
-                "y":468,
-                "w":270,
+                "y":510,
+                "w":300,
                 "h":42,
                 "size":12,
-                "text":"Si salarié déjà embauché dans le passé voir EDDY"
+                "text":"Ref contrat : si déjà embauchévoir EDDY"
             }
         ]
     },
@@ -96,11 +96,11 @@ MAPS = {
                 "key":"note_conges",
                 "type":"boxed_text",
                 "x":160,
-                "y":62,
+                "y":40,
                 "w":250,
                 "h":36,
                 "size":12,
-                "text":"non si gérant ou président"
+                "text":"NON si gérant ou président"
             }
         ]
     },
@@ -110,12 +110,12 @@ MAPS = {
             {
                 "key":"note_allegement",
                 "type":"boxed_text",
-                "x":172,
+                "x":200,
                 "y":246,
                 "w":250,
                 "h":36,
                 "size":12,
-                "text":"non si gérant ou président"
+                "text":"NON si gérant ou président"
             }
         ]
     },
@@ -145,12 +145,12 @@ MAPS = {
             {
                 "key":"note_forfaitaire",
                 "type":"boxed_text",
-                "x":615,
-                "y":338,
+                "x":34,
+                "y":78,
                 "w":250,
                 "h":38,
                 "size":12,
-                "text":"mettre forfaitaire si gérants ou présidents"
+                "text":"mettre forfaitaire QUE si gérants ou présidents"
             }
         ]
     },
