@@ -111,7 +111,7 @@ MAPS = {
                 "key":"note_allegement",
                 "type":"boxed_text",
                 "x":200,
-                "y":246,
+                "y":300,
                 "w":250,
                 "h":36,
                 "size":12,
