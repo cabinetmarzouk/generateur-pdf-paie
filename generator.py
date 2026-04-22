@@ -339,7 +339,7 @@ def enrich_page_data(page_name, page_data):
 
     elif page_name == "emploi_3":
         contrat = normalize_upper(data.get("contrat"))
-        data["cdd_motif"] = "31" if contrat == "CDD" else ""
+        data["cdd_motif"] = "02" if contrat == "CDD" else ""
         data["ref_contrat_note"] = "Si salarié déjà embauché dans le passé voir EDDY"
 
     elif page_name == "conges":
@@ -359,6 +359,14 @@ def enrich_page_data(page_name, page_data):
         base = 151.67
         surplus = round(max(0, heures_mois - base), 2)
 
+        salaire_type = normalize_lower(
+            data.get("type_salaire")
+            or data.get("salaire_type")
+            or data.get("nature_salaire")
+            or ""
+        )
+        salaire_est_net = salaire_type == "net"
+
         if heures_mois > base:
             data["heures_par_periode"] = decimal_string(base)
             data["heures_a_majorer"] = decimal_string(surplus)
@@ -367,6 +375,9 @@ def enrich_page_data(page_name, page_data):
                 data["heures_par_periode"] = decimal_string(heures_mois)
             if not normalize_text(data.get("heures_a_majorer")):
                 data["heures_a_majorer"] = ""
+
+        if salaire_est_net:
+            data["salaire_mensuel"] = ""
 
         data["note_forfaitaire"] = "mettre forfaitaire si gérants ou présidents"
 
