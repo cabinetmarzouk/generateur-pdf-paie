@@ -57,7 +57,7 @@ MAPS = {
     "emploi_1": {
         "fields": [
             {"key":"emploi_exerce", "type":"text", "x":242, "y":48, "size":16},
-            {"key":"code_insee_emploi", "type":"text", "x":242, "y":200, "size":16},
+            {"key":"code_insee_emploi", "type":"text", "x":242, "y":165, "size":16},
             {"key":"indice_emploi", "type":"text", "x":140, "y":500, "size":16},
             {"key":"pourcentage_activite", "type":"text", "x":242, "y":431, "size":16}
         ]
